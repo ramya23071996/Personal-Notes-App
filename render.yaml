@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: personal-notes-app
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn notes_project.wsgi:application
+    autoDeploy: true
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: notes_project.settings
+      - key: SECRET_KEY
+        value: your-secret-key-here
+      - key: ALLOWED_HOSTS
+        value: your-app-name.onrender.com
